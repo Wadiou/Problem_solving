@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Worker Example</title>
+</head>
+<body>
+    <h1>Web Worker Demo</h1>
+    <button id="start-worker">Start Worker</button>
+    <button id="stop-worker">Stop Worker</button>
+    <button id="">Stop Worker</button>
+    <p>Result: <span id="result">Waiting...</span></p>
+
+    <script>
+        let worker;
+
+        document.getElementById('start-worker').addEventListener('click', function() {
+            if (typeof(Worker) !== "undefined") {
+                if (!worker) {
+                    // Create a new Web Worker
+                    worker = new Worker('w1.js');
+
+                    // Send data to the worker
+                    worker.postMessage({ iterations: 5000000000 });
+
+                    // Listen for messages from the worker
+                    worker.onmessage = function(e) {
+                        document.getElementById('result').textContent = e.data;
+                    };
+
+                    // Handle errors (optional)
+                    worker.onerror = function(e) {
+                        console.error('Error in worker:', e.message);
+                    };
+                }
+            } else {
+                alert("Your browser doesn't support Web Workers.");
+            }
+        });
+
+        document.getElementById('stop-worker').addEventListener('click', function() {
+            if (worker) {
+                worker.terminate();
+                worker = null;
+                document.getElementById('result').textContent = 'Worker stopped.';
+            }
+        });
+    </script>
+</body>
+</html>

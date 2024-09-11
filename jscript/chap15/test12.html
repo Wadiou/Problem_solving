@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Before Unload Example</title>
+</head>
+<body>
+
+<h1>Unsaved Changes Warning Example</h1>
+<p>Make changes to the text and then try to leave the page.</p>
+
+<textarea rows="10" cols="50">Edit this text...</textarea>
+
+<script>
+  window.addEventListener("beforeunload", (event) => {
+    event.returnValue = "You have unsaved changes"
+  });
+</script>
+
+</body>
+</html>

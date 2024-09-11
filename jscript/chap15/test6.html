@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resizable Bar</title>
+</head>
+<body>
+
+<p>Drag the bar to change its width:</p>
+<div style="background: orange; width: 60px; height: 20px"></div>
+
+<script>
+let lastX;
+let bar = document.querySelector("div");
+
+bar.addEventListener("mousedown", event => {
+    if (event.button == 0) { // Left mouse button
+        lastX = event.clientX;
+        window.addEventListener("mousemove", moved);
+        event.preventDefault(); // Prevents text selection during dragging
+    }
+});
+
+function moved(event) {
+    if (event.buttons == 0) { // Stop dragging if no button is pressed
+        window.removeEventListener("mousemove", moved);
+    } else {
+        let dist = event.clientX - lastX; // Calculate movement distance
+        let newWidth = Math.max(10, bar.offsetWidth + dist); // Ensure minimum width
+        bar.style.width = newWidth + "px";
+        lastX = event.clientX; // Update last observed X position
+    }
+}
+</script>
+
+</body>
+</html>

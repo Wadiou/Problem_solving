@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Touch Event Example</title>
+    <style>
+        .dot {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: red;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        document.addEventListener("touchstart", e => {
+            for (const touch of e.changedTouches) {
+                const dot = document.createElement("div");
+                dot.classList.add("dot");
+                dot.style.top = `${touch.pageY}px`;
+                dot.style.left = `${touch.pageX}px`;
+                dot.id = touch.identifier;
+                document.body.append(dot);
+            }
+        });
+
+        document.addEventListener("touchmove", e => {
+            console.log(e);
+            
+            for (const touch of e.changedTouches) {
+                const dot = document.getElementById(touch.identifier);
+                if (dot) {
+                    dot.style.top = `${touch.pageY}px`;
+                    dot.style.left = `${touch.pageX}px`;
+                    let random = Math.random();
+                    dot.style.width = `${Math.max(Math.floor(random*50),50)}px`;
+                    dot.style.height = `${Math.max(Math.floor(random*50),50)}px`;
+
+                }
+            }
+        });
+
+        document.addEventListener("touchend", e => {
+            for (const touch of e.changedTouches) {
+                const dot = document.getElementById(touch.identifier);
+                if (dot) {
+                    dot.remove();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

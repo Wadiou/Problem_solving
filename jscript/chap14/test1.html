@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Example Page</title>
+    <script defer>
+        function talksAbout(node, string) {
+            if (node.nodeType == Node.ELEMENT_NODE) {
+                for (let i = 0; i < node.childNodes.length; i++) {
+                    if (talksAbout(node.childNodes[i], string)) {
+                        return true;
+                    }
+                }
+                return false;
+            } else if (node.nodeType == Node.TEXT_NODE) {
+                return node.nodeValue.indexOf(string) > -1;
+            }
+        }
+
+        // Applying the function to the document body
+        console.log(talksAbout(document.body, "JavaScript"));  // Output: true
+
+        // Checking for a word that doesn't exist
+        console.log(talksAbout(document.body, "Python"));  // Output: false
+    </script>
+</head>
+<body>
+    <h1>Welcome to the Example Page</h1>
+    <p>This page is all about demonstrating how the talksAbout function works.</p>
+    <p>We will be talking about JavaScript, HTML, and other web technologies.</p>
+    <p>Enjoy learning about web development!</p>
+</body>
+</html>

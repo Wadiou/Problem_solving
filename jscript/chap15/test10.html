@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Changing Progress Bar</title>
+    <style>
+        #progress {
+            
+            width: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px; /* Adjust the height for visibility */
+        }
+    </style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<script>
+    // Create some content
+    document.body.appendChild(document.createTextNode(
+        "supercalifragilisticexpialidocious ".repeat(1000)
+    ));
+
+    let bar = document.querySelector("#progress");
+
+    window.addEventListener("scroll", () => {
+        let max = document.body.scrollHeight - innerHeight;
+        let scrollPercent = (pageYOffset / max) * 100;
+
+        // Update the width of the progress bar
+        bar.style.width = `${scrollPercent}%`;
+
+        // Change the color of the progress bar based on the scroll position
+        bar.style.backgroundColor = `hsl(${scrollPercent * 3.6}, 100%, 50%)`;
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dot Drawing</title>
+    <style>
+        body {
+            height: 200px;
+            background: beige;
+            margin: 0;
+        }
+        .dot {
+            height: 8px; width: 8px;
+            border-radius: 4px; /* rounds corners */
+            background: blue;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        let isDrawing = false;
+
+        window.addEventListener("mousedown", event => {
+            if (event.button === 0) { // Left button is pressed
+                isDrawing = true;
+                drawDot(event.pageX, event.pageY);
+            }
+        });
+
+        window.addEventListener("mousemove", event => {
+            if (isDrawing) {
+                drawDot(event.pageX, event.pageY);
+            }
+        });
+
+        window.addEventListener("mouseup", event => {
+            if (event.button === 0) { // Left button is released
+                isDrawing = false;
+            }
+        });
+
+        window.addEventListener("contextmenu", event => {
+            event.preventDefault(); // Prevent the context menu from appearing
+            if (event.target.classList.contains("dot")) {
+                event.target.remove(); // Remove the dot on right-click
+            }
+        });
+
+        function drawDot(x, y) {
+            // Create a new div element for the dot
+            let dot = document.createElement("div");
+            dot.className = "dot";
+
+            // Position the dot based on mouse click coordinates
+            dot.style.left = (x - 4) + "px";
+            dot.style.top = (y - 4) + "px";
+
+            // Add the dot to the document body
+            document.body.appendChild(dot);
+        }
+    </script>
+</body>
+</html>

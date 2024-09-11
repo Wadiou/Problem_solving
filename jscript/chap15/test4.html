@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prevent Default Examples</title>
+</head>
+<body>
+
+<h2>Prevent Default Behavior Examples</h2>
+
+<!-- Example 1: Preventing a link from navigating -->
+<p>
+  <a href="https://developer.mozilla.org/" id="mdnLink">Visit MDN</a>
+</p>
+
+<!-- Example 2: Preventing form submission -->
+<form id="testForm">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" required>
+  <button type="submit">Submit</button>
+</form>
+
+<!-- Example 3: Preventing right-click context menu -->
+<p id="noRightClick">Right-click on this paragraph (try it!)</p>
+
+<!-- Example 4: Preventing a checkbox from being checked -->
+<p>
+  <label for="checkbox">Agree to terms:</label>
+  <input type="checkbox" id="checkbox">
+</p>
+
+<script>
+  // Example 1: Prevent the link from navigating to the URL
+  let link = document.querySelector("#mdnLink");
+  link.addEventListener("click", event => {
+    alert("Link click prevented!");
+    event.preventDefault();
+  });
+
+  // Example 2: Prevent the form from being submitted
+  let form = document.querySelector("#testForm");
+  form.addEventListener("submit", event => {
+    alert("Form submission prevented!");
+    event.preventDefault();
+  });
+
+  // Example 3: Prevent the right-click context menu
+  let noRightClick = document.querySelector("#noRightClick");
+  noRightClick.addEventListener("contextmenu", event => {
+    alert("Right-click is disabled!");
+    event.preventDefault();
+  });
+
+  // Example 4: Prevent the checkbox from being checked
+  let checkbox = document.querySelector("#checkbox");
+  checkbox.addEventListener("click", event => {
+    alert("Checking this box is disabled!");
+    event.preventDefault();
+  });
+
+  window.addEventListener("keydown", event => {
+    if (event.key == "v") {
+      document.body.style.background = "violet";
+    }
+  });
+
+  window.addEventListener("keyup", event => {
+    if (event.key == "v") {
+      document.body.style.background = "";
+    }
+  });
+</script>
+
+</body>
+</html>

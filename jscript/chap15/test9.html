@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Touch Dots</title>
+    <style>
+        dot { 
+            position: absolute; 
+            display: block;
+            border: 2px solid red; 
+            border-radius: 50px;
+            height: 100px; 
+            width: 100px; 
+        }
+    </style>
+</head>
+<body>
+
+<p>Touch this page</p>
+
+<script>
+  function update(event) {
+    // Remove any existing dots
+    document.querySelectorAll("dot").forEach(e => e.remove())
+        
+
+    // Create a new dot for each touch point
+    for (let i = 0; i < event.touches.length; i++) {
+        console.log(event,event.touches[i]);
+        
+      let {pageX, pageY} = event.touches[i];
+      let dot = document.createElement("dot");
+      dot.style.left = (pageX - 50) + "px";
+      dot.style.top = (pageY - 50) + "px";
+      document.body.appendChild(dot);
+    }
+  }
+
+  // Add event listeners for touch events
+  window.addEventListener("touchstart", update);
+  window.addEventListener("touchmove", update);
+  window.addEventListener("touchend", update);
+</script>
+
+</body>
+</html>

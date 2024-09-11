@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moving Box</title>
+    <style>
+        #box {
+            width: 50px;
+            height: 50px;
+            background-color: blue;
+            border-radius: 25px;
+            position: relative;
+        }
+        #container {
+            width: 100%;
+            height: 100px;
+            border: 1px solid black;
+            
+        }
+        #toggleButton {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="container">
+    <div id="box"></div>
+</div>
+<button id="toggleButton">Start</button>
+
+<script>
+    let box = document.getElementById("box");
+    let toggleButton = document.getElementById("toggleButton");
+    let animationId;
+    let isMoving = false;
+    let position = 0;
+    let speed = 2; // pixels per frame
+
+    function animate(time) {
+        position += speed;
+        
+        console.log(time);
+
+        if (position >= document.getElementById("container").offsetWidth - box.offsetWidth || position < 0) {
+            speed = -speed;
+            
+        }
+        box.style.left = position + "px";
+        animationId = requestAnimationFrame(animate);
+    }
+
+    toggleButton.addEventListener("click", function() {
+        if (isMoving) {
+            cancelAnimationFrame(animationId);
+            toggleButton.textContent = "Start";
+        } else {
+            animationId = requestAnimationFrame(animate);
+            toggleButton.textContent = "Pause";
+        }
+        isMoving = !isMoving;
+    });
+</script>
+
+</body>
+</html>

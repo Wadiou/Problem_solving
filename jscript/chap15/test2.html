@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Propagation Example</title>
+</head>
+<body>
+
+<p>A paragraph with a <button>Click me</button>.</p>
+
+<script>
+  let para = document.querySelector("p");
+  let button = document.querySelector("button");
+
+  // Event handler for the paragraph
+  para.addEventListener("mousedown", () => {
+    console.log("Handler for paragraph.");
+  });
+
+  // Event handler for the button
+  button.addEventListener("mousedown", event => {
+    console.log("Handler for button.");
+    // Stop the event from propagating to the paragraph
+    event.stopPropagation();
+  });
+</script>
+
+</body>
+</html>

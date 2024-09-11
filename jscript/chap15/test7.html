@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Touch Events Example</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        #touchArea {
+            width: 100%;
+            height: 100vh;
+            background-color: #2196F3;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            touch-action: none; /* Prevents the default scroll behavior */
+        }
+        #output {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="touchArea">
+    <div id="output">Touch the screen and move your finger.</div>
+</div>
+
+<script>
+    const touchArea = document.getElementById('touchArea');
+    const output = document.getElementById('output');
+
+    // Function to handle touch start
+    function handleTouchStart(event) {
+        const touch = event.touches[0];
+        output.textContent = `Touch started at (${touch.clientX}, ${touch.clientY})`;
+    }
+
+    // Function to handle touch move
+    function handleTouchMove(event) {
+        const touch = event.touches[0];
+        output.textContent = `Touch moved to (${touch.clientX}, ${touch.clientY})`;
+    }
+
+    // Function to handle touch end
+    function handleTouchEnd(event) {
+        output.textContent = `Touch ended`;
+    }
+
+    // Attach touch event listeners to the touchArea
+    touchArea.addEventListener('touchstart', handleTouchStart);
+    touchArea.addEventListener('touchmove', handleTouchMove);
+    touchArea.addEventListener('touchend', handleTouchEnd);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>General Click Handler</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            display: inline-block;
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Click an Element</h2>
+<p>Click on a button, box, or other elements to see the result:</p>
+
+<!-- Buttons -->
+<button>Button 1</button>
+<button>Button 2</button>
+
+<!-- Boxes -->
+<div class="box" id="box1"></div>
+<div class="box" id="box2"></div>
+
+<!-- Special Elements -->
+<div id="specialElement">Click me!</div>
+<p class="clickable">Click this paragraph</p>
+
+<script>
+  // Add a click event listener to the entire body
+  document.body.addEventListener("click", event => {
+    // Check if the clicked element is a button
+    if (event.target.nodeName === "BUTTON") {
+      alert("You clicked a button with text: " + event.target.textContent);
+    }
+    // Check if the clicked element is a box (by class name)
+    else if (event.target.classList.contains("box")) {
+      alert("You clicked a box with ID: " + event.target.id);
+    }
+    // Check if the clicked element has a specific ID
+    else if (event.target.id === "specialElement") {
+      alert("You clicked the special element with ID: " + event.target.id);
+    }
+    // Check if the clicked element has a specific class
+    else if (event.target.classList.contains("clickable")) {
+      alert("You clicked an element with class 'clickable'.");
+    }
+    // Default case if none of the above
+    else {
+      alert("You clicked on an element.");
+    }
+  });
+</script>
+
+</body>
+</html>

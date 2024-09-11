@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Position Tracker</title>
+</head>
+<body>
+
+<h1>Move your mouse around the page</h1>
+
+<script>
+let scheduled = null;
+
+window.addEventListener("mousemove", event => {
+  if (!scheduled) {
+    setTimeout(() => {
+      document.body.textContent =
+        `Mouse at ${scheduled.pageX}, ${scheduled.pageY}`;
+      scheduled = null; // Reset scheduled after the action
+    }, 250);
+  }
+  
+  scheduled = event; // Store the event details
+});
+</script>
+
+</body>
+</html>

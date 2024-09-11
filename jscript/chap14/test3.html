@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bounding Client Rect Example</title>
+    <style>
+        body {
+            height: 2000px; /* Large height to enable scrolling */
+            margin: 0;
+        }
+        .box {
+            width: 200px;
+            height: 100px;
+            background-color: lightblue;
+            position: absolute;
+            top: 300px;
+            left: 150px;
+            border: 3px solid black;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">I'm a box</div>
+
+<script>
+    // Select the box element
+    const box = document.querySelector('.box');
+    
+    // Get the bounding client rect of the box
+    const rect = box.getBoundingClientRect();
+    console.log("Bounding Client Rect:", rect); // This should log the bounding box details
+    
+    // Get the scroll position
+    const scrollX = window.pageXOffset;
+    const scrollY = window.pageYOffset;
+    console.log("Scroll X:", scrollX); // This should log the horizontal scroll position
+    console.log("Scroll Y:", scrollY); // This should log the vertical scroll position
+    
+    // Calculate the position relative to the entire document
+    const docTop = rect.top + scrollY;
+    const docLeft = rect.left + scrollX;
+    
+    console.log("Top relative to document:", docTop); // This should log the top position relative to the document
+    console.log("Left relative to document:", docLeft); // This should log the left position relative to the document
+</script>
+
+</body>
+</html>

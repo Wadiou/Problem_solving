@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Comparison</title>
+</head>
+<body>
+
+<p><span id="one"></span></p>
+<p><span id="two"></span></p>
+<img src="black-cat.png" alt="cat">
+
+<script>
+  function time(name, action) {
+    let start = Date.now(); // Current time in milliseconds
+    action();
+    console.log(name, "took", Date.now() - start, "ms");
+  }
+
+  // Naive method: Adding one "X" at a time until the width reaches 2000px
+  time("naive", () => {
+    let target = document.getElementById("one");
+    while (target.offsetWidth < 2000) {
+      target.appendChild(document.createTextNode("X"));
+    }
+    console.log("Offset width 1:",target.offsetWidth );
+  });
+  // The console will output something like: naive took 32 ms
+
+  // Clever method: Calculating the number of "X" needed and setting it all at once
+  time("clever", function() {
+    let target = document.getElementById("two");
+    target.appendChild(document.createTextNode("XXXXX"));
+    let singleXWidth = target.offsetWidth / 5; // Calculate width of a single "X"
+    let total = Math.ceil(2000 / singleXWidth); // Total number of "X" to reach 2000px
+    target.firstChild.nodeValue = "X".repeat(total);
+    console.log("Offset width 2:", target.offsetWidth);
+  });
+  
+  
+  
+  // The console will output something like: clever took 1 ms
+</script>
+
+</body>
+</html>
