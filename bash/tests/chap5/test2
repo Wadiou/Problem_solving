@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo "Script started"
+
+set -x  # Enable debugging mode
+
+distro="Ubuntu"
+version="20.04"
+
+echo "Distribution: $distro"
+echo "Version: $version"
+
+set +x  # Disable debugging mode
+
+echo "Script completed"

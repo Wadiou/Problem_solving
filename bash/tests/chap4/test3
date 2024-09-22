@@ -1,0 +1,7 @@
+#!/bin/bash
+# while-menu2: a menu driven system information program
+set -x
+while read distro version year ; do
+    printf "Distro: %s\tVersion: %s\tYear: %s\t\n" $distro $version $year
+done <<< "$(sort -k1,1 -k2n distro.txt)"
+set +x

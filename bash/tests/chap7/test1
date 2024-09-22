@@ -1,0 +1,34 @@
+#!/bin/bash
+
+param="Hello"
+
+echo "${unset:-"hi"}"
+echo $unset
+echo ${!BASH*}
+echo ${#param}
+
+foo="file.txt.gz.tar"
+
+echo ${foo#*.}        # Outputs: "txt.zip" (removes shortest match, up to the first dot)
+echo ${foo##*.}       # Outputs: "zip" (removes longest match, up to the last dot)
+#!/bin/bash
+# ul-param: demonstrate case conversion via parameter expansion
+if [[ "$param" ]]; then
+    echo "${param,,}"  # All lowercase
+    echo "${param,}"   # First character lowercase
+    echo "${param^^}"  # All uppercase
+    echo "${param^}"   # First character uppercase
+fi
+i=1
+
+((i++))
+echo $i
+#!/bin/bash
+for ((i = 0; i <= 20; ++i)); do
+  if ((i % 5 == 0)); then
+    printf "<%d> " "$i"
+  else
+    printf "%d " "$i"
+  fi
+done
+printf "\n"

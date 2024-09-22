@@ -1,0 +1,11 @@
+#!/bin/bash
+filename="test3"
+touch "${filename}.txt"
+echo -e "hello world!\nWelcome Back" > "${filename}.txt"
+cat *.txt
+ls -lha .
+mv "${filename}.txt" "${filename}_new.txt"
+ls -lha .
+rm "${filename}_new.txt"
+ls -lha .
+

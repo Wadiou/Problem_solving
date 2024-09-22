@@ -1,0 +1,22 @@
+#!/bin/bash
+
+Int="-5"
+
+if [[ $Int =~ ^-?([0-9]+(\.[0-9]+)?|\.[0-9]+)$ ]]; then
+    
+    if [[ $Int =~ ^-?[0-9]+$ ]]; then
+        echo "$Int is a Whole number"
+    else
+        echo "$Int isn't a Whole number"
+    fi
+
+    if (( $Int < 0 )); then
+        echo "$Int is a negative number"
+    else
+        echo "$Int is a positive number"
+    fi
+else 
+    echo "$Int isn't a number" >&2
+    exit 1
+fi
+exit 0

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+read <<< "$(echo foo)" ; echo $REPLY
+  # Output will be empty
+
+cat <(echo "foo")

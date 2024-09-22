@@ -1,0 +1,4 @@
+#!/bin/bash
+
+read -esp "Enter a number ->" answer
+echo $answer

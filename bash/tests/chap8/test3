@@ -1,0 +1,14 @@
+#!/bin/bash
+
+animals=("a dog" "a cat" "a fish")
+# Using * without quotes (splits elements into words)
+for i in ${animals[*]}; do echo $i; done
+
+# Using @ without quotes (splits elements into words)
+for i in ${animals[@]}; do echo $i; done
+
+# Using * with quotes (treats array as one single string)
+for i in "${animals[*]}"; do echo $i; done
+
+# Using @ with quotes (treats each element as its own string)
+for i in "${animals[@]}"; do echo $i; done

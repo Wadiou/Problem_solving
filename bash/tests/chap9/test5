@@ -1,0 +1,24 @@
+#!/bin/bash
+# trap-demo2: simple signal handling demo
+
+# Function to handle SIGINT
+exit_on_signal_SIGINT () {
+  echo "Script interrupted." 2>&1
+  exit 0
+}
+
+# Function to handle SIGTERM
+exit_on_signal_SIGTERM () {
+  echo "Script terminated." 2>&1
+  exit 0
+}
+
+# Set traps to execute the functions when signals are received
+trap exit_on_signal_SIGINT SIGINT
+trap exit_on_signal_SIGTERM SIGTERM
+
+# Simulate a long-running process with a loop
+for i in {1..5}; do
+  echo "Iteration $i of 5"
+  sleep 5
+done

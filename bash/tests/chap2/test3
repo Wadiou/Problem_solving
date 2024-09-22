@@ -1,0 +1,43 @@
+#!/bin/bash
+# test-file: Evaluate the status of a file
+
+FILE=~/.bashr
+
+if [ -e "$FILE" ]; then
+    echo "$FILE exists."
+
+    if [ -f "$FILE" ]; then
+        echo "$FILE is a regular file."
+    else
+        echo "$FILE is not a regular file."
+    fi
+
+    if [ -d "$FILE" ]; then
+        echo "$FILE is a directory."
+    else
+        echo "$FILE is not a directory."
+    fi
+
+    if [ -r "$FILE" ]; then
+        echo "$FILE is readable."
+    else
+        echo "$FILE is not readable."
+    fi
+
+    if [ -w "$FILE" ]; then
+        echo "$FILE is writable."
+    else
+        echo "$FILE is not writable."
+    fi
+
+    if [ -x "$FILE" ]; then
+        echo "$FILE is executable/searchable."
+    else
+        echo "$FILE is not executable/searchable."
+    fi
+else
+    echo "$FILE does not exist."
+    exit 1
+fi
+
+exit 0

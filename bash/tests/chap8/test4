@@ -1,0 +1,22 @@
+#!/bin/bash
+
+foo=("a dog" "a cat" "a horse")
+
+# Output the values in the array
+for i in "${foo[@]}"; do echo $i; done
+
+# Output the subscripts (indexes) in the array
+for i in "${!foo[@]}"; do echo $i; done
+
+a=("f" "e" "d" c b a)
+echo  "${a[@]}"
+a_sorted=($(for i in "${a[@]}"; do echo $i; done | sort))
+
+echo  ${a_sorted[@]}  # Outputs: a b c d e f
+
+declare -A colors
+colors["red"]="#ff0000"
+colors["green"]="#00ff00"
+colors["blue"]="#0000ff"
+
+echo ${colors["blue"]}  # Outputs: #0000ff

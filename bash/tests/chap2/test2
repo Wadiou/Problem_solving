@@ -1,0 +1,7 @@
+#!/bin/bash
+if cd ..; ls file.txt; then
+    echo "File exists in the directory  $(ls .)"
+
+else
+    echo "Directory or file does not exist $(ls .)"
+fi

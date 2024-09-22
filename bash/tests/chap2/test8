@@ -1,0 +1,31 @@
+#!/bin/bash
+report_home_space () {
+    # Check if the user is root (UID 0)
+    if [[ "$(id -u)" -eq 0 ]]; then
+        # If root, display space utilization for all users' home directories
+        cat <<- _EOF_
+        <h2>Home Space Utilization (All Users)</h2>
+        <pre>$(du -sh /home/*)</pre>
+_EOF_
+    else
+        # If not root, display space utilization for the current user's home directory
+        cat <<- _EOF_
+        <h2>Home Space Utilization ($USER)</h2>
+        <pre>$(du -sh $HOME)</pre>
+_EOF_
+    fi
+    return
+}
+RHS="report home space"
+cat << _EOF_ > web8.html
+<html>
+ <head>
+ <title>$RHS</title>
+ </head>
+ <body>
+ <h1>$RHS</h1>
+ $(report_home_space)
+ </body>
+</html>
+_EOF_
+sudo -u Prime firefox web8.html

@@ -1,0 +1,41 @@
+#!/bin/bash
+# hours: script to count files by modification time
+
+# Function to display usage message
+usage () {
+  echo "usage: ${0##*/} directory" >&2
+}
+
+# Check that the argument is a valid directory
+if [[ ! -d "$1" ]]; then
+  usage
+  exit 1
+fi
+
+# # Initialize array to store file counts for each hour (0-23)
+# for i in {0..23}; do 
+#   hours[i]=0 
+# done
+
+# Collect data: gather modification times and count files by hour
+count=0
+for i in $(stat -c %y "$1"/* | cut -c 12-13); do
+  j="${i#0}"  # Remove leading zero from hour if present
+  ((++hours[j]))  # Increment the count for the corresponding hour
+  ((++count))  # Increment the total file count
+done
+
+# Display the table of file counts by hour
+echo -e "Hour\tFiles\tHour\tFiles"
+echo -e "----\t-----\t----\t-----"
+for i in {0..11}; do
+  j=$((i + 12))  # Calculate the hour for the second column
+  printf "%02d\t%d\t%02d\t%d\n" \
+    "$i" \
+    "${hours[i]}" \
+    "$j" \
+    "${hours[j]}"
+done
+
+# Display the total file count
+printf "\nTotal files = %d\n" $count

@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# Parameter for demonstration
+param="Hello, World! This is a simple test."
+
+# 1. ${parameter:-word} : Returns word if parameter is unset or empty.
+echo "${unset_param:-Default}"  # Output: Default
+
+# 2. ${parameter:=word} : Assigns word to parameter if it's unset or empty.
+echo "${unset_param2:=Assigned}"
+echo "$unset_param2"            # Output: Assigned
+
+# 3. ${parameter:?word} : Prints word as an error and exits if parameter is unset or empty.
+# Uncommenting the next line will throw an error and stop the script.
+# echo "${unset_param3:?Error: Parameter is unset!}"
+
+# 4. ${parameter:+word} : Returns word if parameter is set, nothing otherwise.
+echo "${param:+Set}"            # Output: Set
+
+# 5. ${#parameter} : Returns the length of the string.
+echo "Length of param: ${#param}"  # Output: 32
+
+# 6. ${parameter:offset} : Extracts a substring starting at offset.
+echo "Substring from offset 7: ${param:7}"  # Output: World! This is a simple test.
+
+# 7. ${parameter:offset:length} : Extracts a substring starting at offset with length.
+echo "Substring from offset 7 with length 5: ${param:7:5}"  # Output: World
+
+# 8. ${parameter#pattern} : Removes the shortest match of pattern from the start.
+echo "${param#Hello, }"  # Output: World! This is a simple test.
+
+# 9. ${parameter##pattern} : Removes the longest match of pattern from the start.
+echo "${param##*, }"     # Output: This is a simple test.
+
+# 10. ${parameter%pattern} : Removes the shortest match of pattern from the end.
+echo "${param%test.}"    # Output: Hello, World! This is a simple
+
+# 11. ${parameter%%pattern} : Removes the longest match of pattern from the end.
+echo "${param%%is*}"     # Output: Hello, World!
+
+# 12. ${parameter/pattern/string} : Replaces the first match of pattern with string.
+echo "${param/World/Universe}"  # Output: Hello, Universe! This is a simple test.
+
+# 13. ${parameter//pattern/string} : Replaces all matches of pattern with string.
+echo "${param//is/was}"  # Output: Hello, World! Thwas was a simple test.
+
+# 14. ${parameter/#pattern/string} : Replaces pattern with string only if at the start.
+echo "${param/#Hello/Hi}"  # Output: Hi, World! This is a simple test.
+
+# 15. ${parameter/%pattern/string} : Replaces pattern with string only if at the end.
+echo "${param/%test./exam.}"  # Output: Hello, World! This is a simple exam.

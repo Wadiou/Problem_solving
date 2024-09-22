@@ -1,0 +1,11 @@
+#!/bin/bash
+# trap-demo: simple signal handling demo
+
+# Trap signals SIGINT and SIGTERM
+trap "echo 'I am ignoring you.'" SIGINT SIGTERM
+
+# Loop to simulate script processing
+for i in {1..5}; do
+  echo "Iteration $i of 5"
+  sleep 2
+done

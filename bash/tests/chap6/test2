@@ -1,0 +1,22 @@
+#!/bin/bash
+max_len=0
+max_word=""
+max_file=""
+
+for i in "$@"; do
+    if [ "$i" == "$0" ]; then
+        continue
+    fi
+    if [ -r "$i" ]; then
+        for s in $(strings "$i"); do
+            len="$(wc -c <<< "$s")"
+            if (( len > max_len )); then
+                max_len=$len
+                max_word=$s
+                max_file=$i
+            fi
+        done
+    fi
+done
+
+echo "The longest word is : $max_word in $max_file file and it's length is $max_len"

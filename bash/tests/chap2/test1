@@ -1,0 +1,7 @@
+#!/bin/bash
+if false; true; then echo "It's true."; fi
+if true; false; then
+    echo "It's true."
+else
+    echo "It's false."
+fi

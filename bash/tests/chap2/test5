@@ -1,0 +1,18 @@
+#!/bin/bash
+# test-string: evaluate the value of a string
+
+
+
+if [ -z $Answer ]; then
+    echo "There is no answer" >&2
+    exit 1
+fi
+if [ $Answer = "yes" ]; then
+    echo "The answer is yes."
+elif [ $Answer = "no" ];then
+    echo "The answer is no."
+elif [ $Answer = "Maybe" ];then
+    echo "The answer is maybe."
+else
+    echo "The answer is UNKNOWN."
+fi

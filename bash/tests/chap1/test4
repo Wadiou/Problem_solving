@@ -1,0 +1,48 @@
+#!/bin/bash
+# This script creates an HTML report with system information
+
+TITLE="System Information Report For $HOSTNAME"
+CURRENT_TIME="$(date +"%x %r %Z")"
+TIMESTAMP="Generated $CURRENT_TIME, by $USER"
+
+report_uptime () {
+    cat <<- _EOF_
+        <h2>System Uptime</h2>
+        <pre>$(uptime)</pre>
+_EOF_
+
+}
+
+report_disk_space () {
+    cat <<- _EOF_
+    <h2>Disk Space Utilization</h2>
+    <pre>$(df -h)</pre>
+_EOF_
+}
+
+report_home_space () {
+    cat <<- _EOF_
+    <h2>Home Space Utilization</h2>
+    <pre>$(du -sh /home/*)</pre>
+_EOF_
+}
+
+
+# Now we create the HTML file with the information
+cat << _EOF_ > web1.html
+<html>
+ <head>
+ <title>$TITLE</title>
+ </head>
+ <body>
+ <h1>$TITLE</h1>
+ <p>$TIMESTAMP</p>
+ $(report_uptime)
+ $(report_disk_space)
+ $(report_home_space)
+ </body>
+</html>
+_EOF_
+
+# Open the generated HTML file in Firefox
+firefox web1.html

@@ -1,0 +1,14 @@
+#!/bin/bash
+# read-single: read multiple values into default variable
+
+echo -n "Enter one or more values > "
+read
+
+echo "REPLY = '$REPLY'"
+
+echo "Enter values, ending with a period (.) > "
+read -d '.' input
+echo "You entered: '$input'"
+
+read -e -p "Edit your input: " user_input
+echo "You entered: '$user_input'"

@@ -1,0 +1,23 @@
+#!/bin/bash
+
+echo "Normal output: Starting file deletion process..."  # Sent to stdout
+echo "Debug: Preparing to delete files" >&2  # Sent to stderr
+
+dir_name="/path/to/directory"
+
+if [[ -d $dir_name ]]; then
+  echo "Debug: Directory exists: $dir_name" >&2  # Sent to stderr
+  if cd "$dir_name"; then
+    echo "Debug: Deleting files in $dir_name" >&2  # Sent to stderr
+    rm *  # Actual file deletion
+    echo "Normal output: Files deleted successfully."  # Sent to stdout
+  else
+    echo "Error: Cannot cd to '$dir_name'" >&2  # Sent to stderr
+    exit 1
+  fi
+else
+  echo "Error: No such directory: '$dir_name'" >&2  # Sent to stderr
+  exit 1
+fi
+
+echo "Normal output: File deletion complete."  # Sent to stdout

@@ -1,0 +1,21 @@
+#!/bin/bash
+foo=0  # Global variable foo
+
+funct_1 () {
+    local fool  # Local variable foo inside funct_1
+    fool=1
+    echo "funct_1: fool = $fool"
+}
+
+funct_2 () {
+    local foo  # Local variable foo inside funct_2
+    foo=2
+    echo "funct_2: foo = $foo"
+}
+
+echo "global: foo = $foo"  # Prints global foo
+funct_1  # Calls funct_1
+echo "funct_1: fool = $fool"
+echo "global: foo = $foo"  # Prints global foo again
+funct_2  # Calls funct_2
+echo "global: foo = $foo"  # Prints global foo again

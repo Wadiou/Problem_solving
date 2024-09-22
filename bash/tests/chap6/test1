@@ -1,0 +1,5 @@
+#!/bin/bash 
+
+for i in "hello"; do
+    echo $i
+done

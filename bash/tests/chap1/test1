@@ -1,0 +1,9 @@
+#!/bin/bash
+a=z
+b="hello  $a"
+c="$(ls ../../)"
+d="\t\ta string\n"
+echo "$b" 
+echo "$c $(date)"
+echo "$(($((5**2))*5))"
+echo -e $d
