@@ -1,0 +1,18 @@
+#!/bin/bash
+
+declare -a array
+
+if [[ -d "$1" ]]; then
+    for file in "$1"/*; do
+        array+=("$file")
+    done
+
+    for file in "${array[@]}"; do
+        if [[ -f "$file" ]]; then
+            size=$(du -sh "$file" | cut -f1)
+            echo "File: $file, Size: $size"
+        fi
+    done
+else
+    echo "Please provide a valid directory."
+fi
