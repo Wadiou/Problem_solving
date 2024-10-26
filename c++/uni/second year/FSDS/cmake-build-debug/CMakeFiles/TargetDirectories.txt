@@ -1,0 +1,3 @@
+/home/wadoud/Desktop/work/Uni/2nd Year/FSDS/cmake-build-debug/CMakeFiles/FSDS.dir
+/home/wadoud/Desktop/work/Uni/2nd Year/FSDS/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/wadoud/Desktop/work/Uni/2nd Year/FSDS/cmake-build-debug/CMakeFiles/rebuild_cache.dir
